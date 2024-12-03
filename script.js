@@ -1,5 +1,17 @@
 // Smooth Scroll with Offset for Sticky Header
-document.querySelectorAll('nav a').forEach(link => {
+document.querySelectorAll('.nav-links a',).forEach(link => {
+    link.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const target = document.querySelector(this.getAttribute('href'));
+        const headerHeight = document.querySelector('header').offsetHeight;
+        const topPosition = target.offsetTop - headerHeight;
+
+        window.scrollTo({ top: topPosition, behavior: 'smooth' });
+    });
+});
+
+document.querySelectorAll('.cta-button',).forEach(link => {
     link.addEventListener('click', function (e) {
         e.preventDefault();
 
@@ -23,11 +35,11 @@ window.addEventListener('scroll', function () {
 
 // Highlight Active Section in Navigation
 const sections = document.querySelectorAll('section');
-const navLinks = document.querySelectorAll('nav a');
+const navLinks = document.querySelectorAll('.nav-links a');
 
 window.addEventListener('scroll', () => {
     let current = '';
-    const offset = 100; // Offset for header height
+    const offset = document.querySelector('header').offsetHeight;
 
     sections.forEach(section => {
         const sectionTop = section.offsetTop - offset;
@@ -46,37 +58,6 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// Back-to-Top Button
-const backToTopButton = document.querySelector('.back-to-top');
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-        backToTopButton.style.display = 'block';
-    } else {
-        backToTopButton.style.display = 'none';
-    }
-});
-
-backToTopButton.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-// Collapsible Menu for Mobile
-const menuToggle = document.querySelector('.menu-toggle');
-const navLinksContainer = document.querySelector('.nav-links');
-
-menuToggle.addEventListener('click', () => {
-    navLinksContainer.classList.toggle('show');
-});
-
-// Close Menu on Link Click (Mobile)
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        if (navLinksContainer.classList.contains('show')) {
-            navLinksContainer.classList.remove('show');
-        }
-    });
-});
-
 // Form Validation for Contact Section
 const contactForm = document.querySelector('#contact-form');
 if (contactForm) {
@@ -90,4 +71,4 @@ if (contactForm) {
             alert('Please fill out all fields before submitting.');
         }
     });
-}
+};
