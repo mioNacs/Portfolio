@@ -13,6 +13,9 @@ A modern, responsive personal portfolio website for Navneet Raj built with React
 - **Standardized Components**: Consistent styling across all sections
 
 
+## 🌐 Live Demo
+
+View the live portfolio at: [https://mionacs.github.io/Portfolio](https://mionacs.github.io/Portfolio)
 
 ## 🏠 Sections
 

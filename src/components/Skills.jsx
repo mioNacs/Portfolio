@@ -41,7 +41,7 @@ const Skills = () => {
       ),
       skills: [
         { name: "Node.js", level: 60, color: "#339933", icon: "🔄", secretTitle: "Learning: Server Sorcerer" },
-        { name: "MongoDB", level: 55, color: "#47A248", icon: "🍃", secretTitle: "Learning: Document Wrangler" },
+        { name: "MongoDB", level: 35, color: "#47A248", icon: "🍃", secretTitle: "Learning: Document Wrangler" },
       ]
     },
     {
