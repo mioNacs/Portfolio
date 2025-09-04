@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Redirecting</title>
+  <script>
+    // Single Page Apps for GitHub Pages
+    // MIT License
+    // https://github.com/rafgraph/spa-github-pages
+    // This script takes the current URL and converts it to a path to redirect
+    // to the root of the site with the path in the hash fragment
+    (function() {
+      // Skip the redirect for the 404 page itself
+      if (window.location.pathname === '/Portfolio/404.html') {
+        window.location.replace('/Portfolio/');
+        return;
+      }
+      
+      var pathSegmentsToKeep = 1; // Keep "Portfolio" in path
+      var l = window.location;
+      var redirect = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/#' +
+        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/') +
+        (l.search ? '?' + l.search.slice(1) : '');
+      window.location.replace(redirect);
+    })();
+  </script>
+</head>
+<body>
+  <h1>Redirecting...</h1>
+</body>
+</html> 
