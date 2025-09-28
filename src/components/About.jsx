@@ -127,7 +127,7 @@ const About = () => {
               className="flex flex-wrap justify-center gap-4 pt-4"
             >
               <motion.a 
-                href="/resume.pdf" 
+                href="https://drive.google.com/file/d/1lOaM96BQ9EBmuF8nLG0dG5k0bu4VjlmD/view?usp=sharing" 
                 target="_blank"
                 className="inline-flex items-center px-6 py-3 bg-highlight text-primary font-medium rounded-full shadow-lg hover:bg-highlight/90 transition-colors duration-300"
                 whileHover={{ scale: 1.05 }}

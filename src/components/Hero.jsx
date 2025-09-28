@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Typewriter from 'typewriter-effect/dist/core';
+import profileImage from '../assets/profile.jpg';
 
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -246,7 +247,7 @@ const Hero = () => {
                 <div className="relative w-72 h-72 rounded-full bg-primary flex items-center justify-center overflow-hidden">
                   {/* Profile image */}
                   <img 
-                    src="src\assets\profile.jpg" 
+                    src={profileImage} 
                     alt="Navneet Raj" 
                     className="w-full h-full object-cover rounded-full"
                   />

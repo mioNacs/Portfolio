@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useEffect } from 'react';
+import emailjs from '@emailjs/browser';
 import SectionHeading from './SectionHeading';
+import { emailjsConfig } from '../config/emailjs';
 
 const Contact = () => {
   const [formState, setFormState] = useState({
@@ -114,7 +116,7 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     // Set all fields as touched for validation
@@ -130,16 +132,51 @@ const Contact = () => {
       return;
     }
     
-    // In a real scenario, you would send this to a backend
-    console.log('Form submitted:', formState);
-    setFormStatus('success');
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formState.email)) {
+      setFormStatus('invalid-email');
+      return;
+    }
     
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setFormState({ name: '', email: '', message: '' });
-      setFormTouched({ name: false, email: false, message: false });
-      setFormStatus(null);
-    }, 3000);
+    setFormStatus('sending');
+    
+    try {
+      // Check if EmailJS is configured
+      if (!emailjsConfig.serviceID || !emailjsConfig.templateID || !emailjsConfig.publicKey ||
+          emailjsConfig.serviceID === 'YOUR_SERVICE_ID') {
+        throw new Error('EmailJS not configured. Please update src/config/emailjs.js with your credentials.');
+      }
+      
+      const templateParams = {
+        from_name: formState.name,
+        from_email: formState.email,
+        message: formState.message,
+        to_name: 'Navneet Raj',
+        reply_to: formState.email,
+      };
+      
+      const result = await emailjs.send(
+        emailjsConfig.serviceID, 
+        emailjsConfig.templateID, 
+        templateParams, 
+        emailjsConfig.publicKey
+      );
+      
+      console.log('Email sent successfully:', result.text);
+      setFormStatus('success');
+      
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        setFormState({ name: '', email: '', message: '' });
+        setFormTouched({ name: false, email: false, message: false });
+        setFormStatus(null);
+      }, 3000);
+      
+    } catch (error) {
+      console.error('Email sending failed:', error);
+      setFormStatus('error');
+    }
   };
 
   return (
@@ -299,16 +336,31 @@ const Contact = () => {
                 
                 <motion.button
                   type="submit"
-                  className={`btn-primary w-full relative overflow-hidden ${formStatus === 'success' ? 'bg-green-500' : formStatus === 'error' ? 'bg-red-500' : ''}`}
-                  disabled={formStatus === 'success'}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  className={`btn-primary w-full relative overflow-hidden transition-all duration-300 ${
+                    formStatus === 'success' ? 'bg-green-500 hover:bg-green-600' : 
+                    formStatus === 'error' ? 'bg-red-500 hover:bg-red-600' : 
+                    formStatus === 'invalid-email' ? 'bg-orange-500 hover:bg-orange-600' :
+                    formStatus === 'sending' ? 'bg-blue-500 hover:bg-blue-600' : ''
+                  }`}
+                  disabled={formStatus === 'success' || formStatus === 'sending'}
+                  whileHover={{ scale: formStatus === 'sending' ? 1 : 1.02 }}
+                  whileTap={{ scale: formStatus === 'sending' ? 1 : 0.98 }}
                 >
-                  <span className="relative z-10">
+                  <span className="relative z-10 flex items-center justify-center">
+                    {formStatus === 'sending' && (
+                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                    )}
                     {formStatus === 'success' 
-                      ? 'Message Sent!' 
+                      ? '✓ Message Sent!' 
                       : formStatus === 'error'
-                      ? 'Please Fill All Fields'
+                      ? '✗ Please Fill All Fields'
+                      : formStatus === 'invalid-email'
+                      ? '✗ Invalid Email Address'
+                      : formStatus === 'sending'
+                      ? 'Sending...'
                       : 'Send Message'}
                   </span>
                 </motion.button>
@@ -319,7 +371,27 @@ const Contact = () => {
                     animate={{ opacity: 1, y: 0 }}
                     className="mt-4 text-center text-green-500 font-medium"
                   >
-                    Thanks for reaching out! I'll get back to you soon.
+                    ✓ Thanks for reaching out! I'll get back to you soon.
+                  </motion.p>
+                )}
+                
+                {formStatus === 'error' && (
+                  <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mt-4 text-center text-red-500 font-medium"
+                  >
+                    ✗ Failed to send message. Please try again or contact me directly.
+                  </motion.p>
+                )}
+                
+                {formStatus === 'invalid-email' && (
+                  <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mt-4 text-center text-orange-500 font-medium"
+                  >
+                    ⚠ Please enter a valid email address.
                   </motion.p>
                 )}
               </form>

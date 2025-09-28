@@ -1,6 +1,10 @@
 import { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import SectionHeading from './SectionHeading';
+import { FaNodeJs, FaPython } from 'react-icons/fa';
+import { SiMongodb } from 'react-icons/si';
+import { SiJavascript, SiReact, SiTailwindcss, SiHtml5, SiCss3, SiGit, SiGithub, SiNextdotjs} from 'react-icons/si';
+import { VscCopilot, VscVscode } from 'react-icons/vsc';
 
 const Skills = () => {
   const sectionRef = useRef(null);
@@ -15,8 +19,20 @@ const Skills = () => {
         </svg>
       ),
       skills: [
-        { name: "Python", level: 90, color: "#3776AB", icon: "🐍", secretTitle: "Snake Charmer" },
-        { name: "JavaScript", level: 85, color: "#F7DF1E", icon: "⚡", secretTitle: "DOM Wizard" },
+        { name: "Python", level: 75, color: "#3776AB", icon: FaPython, secretTitle: "Snake Charmer" },
+        { name: "JavaScript", level: 85, color: "#F7DF1E", icon: SiJavascript, secretTitle: "DOM Wizard" },
+      ]
+    },
+    {
+      name: "Frameworks/Libraries",
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+        </svg>
+      ),
+      skills: [
+        { name: "React", level: 85, color: "#61DAFB", icon: SiReact, secretTitle: "Component Composer" },
+        { name: "Next.js", level: 75, color: "#717171", icon: SiNextdotjs, secretTitle: "Full-Stack Wizard" },
       ]
     },
     {
@@ -27,9 +43,9 @@ const Skills = () => {
         </svg>
       ),
       skills: [
-        { name: "React", level: 85, color: "#61DAFB", icon: "⚛️", secretTitle: "Component Composer" },
-        { name: "Tailwind", level: 80, color: "#06B6D4", icon: "🌊", secretTitle: "Class Wizard" },
-        { name: "HTML/CSS", level: 90, color: "#E34F26", icon: "🎨", secretTitle: "Style Sculptor" },
+        { name: "Tailwind", level: 80, color: "#06B6D4", icon: SiTailwindcss, secretTitle: "Class Wizard" },
+        { name: "HTML", level: 90, color: "#E34F26", icon: SiHtml5, secretTitle: "Style Sculptor" },
+        { name: "CSS", level: 80, color: "#1572B6", icon: SiCss3, secretTitle: "Style Sculptor" },
       ]
     },
     {
@@ -40,21 +56,8 @@ const Skills = () => {
         </svg>
       ),
       skills: [
-        { name: "Node.js", level: 60, color: "#339933", icon: "🔄", secretTitle: "Learning: Server Sorcerer" },
-        { name: "MongoDB", level: 35, color: "#47A248", icon: "🍃", secretTitle: "Learning: Document Wrangler" },
-      ]
-    },
-    {
-      name: "AI/ML",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-        </svg>
-      ),
-      skills: [
-        { name: "scikit-learn", level: 75, color: "#F7931E", icon: "🧠", secretTitle: "Prediction Prodigy" },
-        { name: "TensorFlow", level: 70, color: "#FF6F00", icon: "📊", secretTitle: "Tensor Tamer" },
-        { name: "NumPy", level: 85, color: "#013243", icon: "🔢", secretTitle: "Array Architect" },
+        { name: "Node.js", level: 60, color: "#339933", icon: FaNodeJs, secretTitle: "Server Sorcerer" },
+        { name: "MongoDB", level: 65, color: "#47A248", icon: SiMongodb, secretTitle: "Document Wrangler" },
       ]
     },
     {
@@ -66,10 +69,9 @@ const Skills = () => {
         </svg>
       ),
       skills: [
-        { name: "Git/GitHub", level: 85, color: "#F05032", icon: "🔄", secretTitle: "Time Traveler" },
-        { name: "VSCode", level: 90, color: "#007ACC", icon: "📝", secretTitle: "Editor Enthusiast" },
-        { name: "Premiere Pro", level: 75, color: "#9999FF", icon: "🎬", secretTitle: "Cut Commander" },
-        { name: "Photoshop", level: 70, color: "#31A8FF", icon: "📸", secretTitle: "Pixel Perfectionist" },
+        { name: "Git/GitHub", level: 85, color: "#F05032", icon: SiGithub, secretTitle: "Time Traveler" },
+        { name: "VSCode", level: 90, color: "#007ACC", icon: VscVscode, secretTitle: "Editor Enthusiast" },
+        { name: "Copilot", level: 75, color: "#9999FF", icon: VscCopilot, secretTitle: "Lets Vibe" },
       ]
     }
   ];
@@ -106,58 +108,93 @@ const Skills = () => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         variants={itemVariants}
-        whileHover={{ y: -5, transition: { duration: 0.2 } }}
+        whileHover={{ y: -8, transition: { duration: 0.3 } }}
       >
-        <div className={`bg-secondary p-6 rounded-xl border border-accent/20 shadow-lg 
-                        relative overflow-hidden transition-all duration-300 h-full
-                        ${isHovered ? 'transform scale-105 shadow-xl border-accent/60' : ''}`}>
-          {/* Background glow effect */}
-          <div className={`absolute inset-0 bg-gradient-to-br from-[${skill.color}]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
+        {/* Glassmorphism card */}
+        <div className={`relative flex items-center bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 
+                        transition-all duration-500 h-full group-hover:bg-white/10 group-hover:border-white/20
+                        shadow-xl group-hover:shadow-2xl`}>
           
-          {/* Floating animation for icon */}
+          {/* Animated gradient border */}
+          <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500
+                          bg-gradient-to-r from-transparent via-[${skill.color}]/30 to-transparent 
+                          animate-pulse`}></div>
+          
+          {/* Skill icon with floating effect */}
           <motion.div 
-            className="text-3xl mb-3"
+            className="relative z-10 flex items-center justify-center w-16 h-16 rounded-xl mb-4 mx-auto"
+            style={{ backgroundColor: `${skill.color}15` }}
             animate={isHovered ? { 
-              y: [0, -8, 0],
-              scale: [1, 1.2, 1]
+              rotate: [0, 5, -5, 0],
+              scale: [1, 1.1, 1]
             } : {}}
-            transition={{ duration: 1.5, repeat: isHovered ? Infinity : 0 }}
+            transition={{ duration: 0.6 }}
           >
-            {skill.icon}
+            <div className="text-3xl" style={{ color: skill.color }}>
+              {typeof skill.icon === 'string' ? skill.icon : <skill.icon />}
+            </div>
           </motion.div>
           
-          <h3 className="text-lg font-bold text-white mb-1 relative z-10">{skill.name}</h3>
+          {/* Skill name */}
+          <h3 className="text-xl font-bold text-white mb-3 text-center relative z-10">
+            {skill.name}
+          </h3>
           
-          {/* Skill level bar */}
-          <div className="w-full bg-primary rounded-full h-2 mb-1">
-            <motion.div 
-              className="h-full rounded-full"
-              style={{ 
-                backgroundColor: skill.color,
-                width: isHovered ? `${skill.level}%` : '0%'
-              }}
-              initial={{ width: '0%' }}
-              animate={{ width: `${skill.level}%` }}
-              transition={{ duration: 1, ease: "easeOut" }}
-            />
+          {/* Circular progress indicator */}
+          <div className="relative w-24 h-24 mx-auto mb-4">
+            <svg className="w-24 h-24 transform -rotate-90" viewBox="0 0 100 100">
+              {/* Background circle */}
+              <circle
+                cx="50"
+                cy="50"
+                r="40"
+                stroke="currentColor"
+                strokeWidth="8"
+                fill="none"
+                className="text-white/10"
+              />
+              {/* Progress circle */}
+              <motion.circle
+                cx="50"
+                cy="50"
+                r="40"
+                stroke={skill.color}
+                strokeWidth="8"
+                fill="none"
+                strokeLinecap="round"
+                strokeDasharray={`${2 * Math.PI * 40}`}
+                strokeDashoffset={`${2 * Math.PI * 40 * (1 - skill.level / 100)}`}
+                initial={{ strokeDashoffset: `${2 * Math.PI * 40}` }}
+                animate={{ strokeDashoffset: `${2 * Math.PI * 40 * (1 - skill.level / 100)}` }}
+                transition={{ duration: 1.5, ease: "easeOut" }}
+                className="drop-shadow-lg"
+              />
+            </svg>
+            {/* Percentage text */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="text-2xl font-bold text-white">
+                {skill.level}%
+              </span>
+            </div>
           </div>
-          <div className="flex justify-between text-xs text-gray-400">
-            <span>Proficiency</span>
-            <span>{skill.level}%</span>
-          </div>
+          
         </div>
 
-        {/* Easter egg secret title tooltip - restored from original design */}
+        {/* Enhanced tooltip with glassmorphism */}
         {isHovered && skill.secretTitle && (
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-highlight text-white text-xs font-bold px-3 py-1.5 rounded-md z-10 whitespace-nowrap shadow-lg"
+            initial={{ opacity: 0, y: 20, scale: 0.8 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            className="absolute -top-16 left-1/2 transform -translate-x-1/2 z-20"
           >
-            {skill.secretTitle}
-            <svg className="absolute text-highlight h-2 w-full left-0 top-full" x="0px" y="0px" viewBox="0 0 255 255">
-              <polygon className="fill-current" points="0,0 127.5,127.5 255,0"></polygon>
-            </svg>
+            <div className="bg-black/80 backdrop-blur-md border border-white/20 text-white text-sm font-semibold 
+                          px-4 py-2 rounded-xl shadow-2xl whitespace-nowrap">
+              {skill.secretTitle}
+              {/* Arrow */}
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2">
+                <div className="w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-black/80"></div>
+              </div>
+            </div>
           </motion.div>
         )}
       </motion.div>
@@ -165,13 +202,55 @@ const Skills = () => {
   };
 
   return (
-    <section id="skills" ref={sectionRef} className="py-20 bg-primary relative">
-      {/* Decorative elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-secondary/20 to-transparent"></div>
-        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-secondary/20 to-transparent"></div>
-        <div className="absolute w-96 h-96 rounded-full bg-highlight/5 -top-48 -right-48 blur-3xl"></div>
-        <div className="absolute w-96 h-96 rounded-full bg-accent/5 -bottom-48 -left-48 blur-3xl"></div>
+    <section id="skills" ref={sectionRef} className="py-20 bg-gradient-to-br from-primary via-primary to-secondary relative overflow-hidden">
+      {/* Enhanced background effects */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Animated gradient orbs */}
+        <motion.div 
+          className="absolute w-[500px] h-[500px] rounded-full bg-gradient-to-r from-highlight/20 to-accent/20 blur-3xl -top-48 -right-48"
+          animate={{ 
+            scale: [1, 1.2, 1],
+            rotate: [0, 180, 360]
+          }}
+          transition={{ 
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        />
+        <motion.div 
+          className="absolute w-[400px] h-[400px] rounded-full bg-gradient-to-l from-purple-500/20 to-blue-500/20 blur-3xl -bottom-48 -left-48"
+          animate={{ 
+            scale: [1.2, 1, 1.2],
+            rotate: [360, 180, 0]
+          }}
+          transition={{ 
+            duration: 25,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        />
+        
+        {/* Floating particles */}
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-white/20 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -100, 0],
+              opacity: [0, 1, 0],
+            }}
+            transition={{
+              duration: 3 + Math.random() * 2,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+            }}
+          />
+        ))}
       </div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -184,19 +263,31 @@ const Skills = () => {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="space-y-12"
+          className="space-y-16"
         >
           {skillCategories.map((category, categoryIndex) => (
-            <motion.div key={category.name} variants={itemVariants} className="mb-10">
-              <div className="flex items-center mb-6">
-                <div className="bg-secondary p-2 rounded-lg mr-3 text-highlight">
-                  {category.icon}
-                </div>
-                <h3 className="text-2xl font-bold text-white">{category.name}</h3>
-                <div className="ml-4 h-0.5 flex-grow bg-accent/20"></div>
-              </div>
+            <motion.div key={category.name} variants={itemVariants} className="mb-12">
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {/* Enhanced category header */}
+              <motion.div 
+                className="relative mb-8"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="flex items-center justify-center mb-6">
+                  <div className="bg-gradient-to-r from-highlight/20 to-accent/20 backdrop-blur-lg 
+                                border border-white/20 p-4 rounded-2xl mr-4 text-white shadow-xl">
+                    {category.icon}
+                  </div>
+                  <div className="text-center">
+                    <h3 className="text-3xl font-bold text-white mb-1">{category.name}</h3>
+                    <div className="w-16 h-1 bg-gradient-to-r from-highlight to-accent rounded-full mx-auto"></div>
+                  </div>
+                </div>
+              </motion.div>
+              
+              {/* Skills grid with responsive layout */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                 {category.skills.map((skill) => (
                   <SkillBadge 
                     key={skill.name} 
@@ -209,12 +300,16 @@ const Skills = () => {
           ))}
         </motion.div>
 
-        {/* Easter egg hint - restored from original design */}
+        {/* Enhanced footer message */}
         <motion.div 
           variants={itemVariants}
-          className="text-center mt-16 opacity-60 text-sm text-gray-400 font-mono"
+          className="text-center mt-20"
         >
-          * Hover over skills to reveal secret dev titles *
+          <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 inline-block">
+            <p className="text-gray-300 font-medium">
+              🎯 Hover over skills to discover secret developer titles
+            </p>
+          </div>
         </motion.div>
       </div>
     </section>

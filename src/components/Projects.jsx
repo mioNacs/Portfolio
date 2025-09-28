@@ -1,6 +1,8 @@
 import { useState, useRef } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import SectionHeading from './SectionHeading';
+import SITCoders from '../assets/SITCoders.png';
+import Look4Git from '../assets/Look4Git.png';
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -10,51 +12,37 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: "BitLinguals Website",
-      description: "Official club website featuring interactive UI, dark theme, and animated slider.",
-      image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-      tags: ["HTML", "CSS", "JavaScript"],
-      link: "https://mionacs.github.io/BLManagementSystem/",
-      github: "https://github.com/mioNacs/BLManagementSystem",
+      title: "SITCoders Website",
+      description: "College Community website featuring interactive UI, RBAC and CRUD features.",
+      image: SITCoders,
+      tags: ["React", "Tailwind CSS", "JavaScript"],
+      link: "https://sitcoders.tech/",
+      github: "https://github.com/mioNacs/SITCoders",
       features: [
-        "Interactive UI",
-        "Dark theme",
-        "Animated slider",
-        "Responsive design"
+        "Post creation and management",
+        "Resource sharing",
+        "RBAC",
+        "CRUD operations",
+        "Admin dashboard"
       ],
-      futureFeatures: "Admin Panel, Session Manager, Backend with Node.js or Django"
+      futureFeatures: "Collaboration tools, real-time chat"
     },
     {
       id: 2,
-      title: "AI Mini Projects",
-      description: "Collection of AI implementations built using Python and GPU acceleration (RTX 4060).",
-      image: "https://images.unsplash.com/photo-1516110833967-0b5716ca1387?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
-      tags: ["Python", "scikit-learn", "pomegranate", "pandas", "NumPy"],
-      link: "#",
-      github: "https://github.com/mioNacs",
+      title: "Look4Git",
+      description: "GitHub profile analyzer and visualizer. Compares profiles and visualizes data.",
+      image: Look4Git,
+      tags: ["React", "Chart.js", "GitHub API"],
+      link: "https://mionacs.github.io/Look4Git/",
+      github: "https://github.com/mioNacs/Look4Git",
       features: [
-        "Machine learning models",
-        "Data processing pipelines",
-        "GPU acceleration",
-        "Research implementations"
+        "Profile Analysis",
+        "Data vizualization",
+        "Profile comparison",
+        "Responsive design"
       ],
-      goal: "Build and understand core ML models"
+      goal: "To help developers understand and improve their GitHub presence"
     },
-    {
-      id: 3,
-      title: "YouTube Channel",
-      description: "Educational content focused on programming, AI, and technology tutorials.",
-      image: "https://images.unsplash.com/photo-1611162616475-46b635cb6868?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
-      tags: ["OBS Studio", "Video Editing", "Teaching"],
-      link: "https://www.youtube.com/@mioNacs",
-      github: "https://github.com/mioNacs",
-      features: [
-        "Programming tutorials",
-        "Tech reviews",
-        "Educational content",
-        "Live coding sessions"
-      ]
-    }
   ];
 
   const containerVariants = {
@@ -93,7 +81,7 @@ const Projects = () => {
         animate={isCardInView ? "visible" : "hidden"}
         whileHover={{ y: -8, transition: { duration: 0.3 } }}
       >
-        <div className="relative overflow-hidden h-48">
+        <div className="relative overflow-hidden ">
           <img 
             src={project.image} 
             alt={project.title} 
@@ -123,11 +111,11 @@ const Projects = () => {
             <h3 className="text-xl font-bold text-white">{project.title}</h3>
             <motion.button
               onClick={() => setSelectedProject(project)}
-              className="text-accent hover:text-highlight text-sm flex items-center"
+              className="text-white hover:text-highlight text-sm flex items-center"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span>Details</span>
+              <span cla>Details</span>
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
@@ -190,7 +178,7 @@ const Projects = () => {
         />
         
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 max-w-[70%] mx-auto gap-16"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
